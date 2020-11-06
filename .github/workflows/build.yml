@@ -27,11 +27,8 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.14
-
-      - name: Mage Build Windows
+      - name: Build
+        run: go build -v -o main.exe main.go
+      - name: Build
         if: matrix.os == 'windows-latest'
-        uses: magefile/mage-action@v1
-        with:
-          version: latest
-          args: build
-          workdir: ${{ env.GITHUB_WORKSPACE }}
+        run: ./main.exe
